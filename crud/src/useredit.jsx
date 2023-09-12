@@ -1,3 +1,4 @@
+
 import {
   Radio,
   AutoComplete,
@@ -15,12 +16,12 @@ import { Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 
-export default function Dash() {
+export default function Useredit() {
   const [componentDisabled, setComponentDisabled] = React.useState(true);
   const [buttonname, setbuttonname] = React.useState("Update");
 
   const nav = useNavigate();
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(localStorage.getItem("update"));
   const [formdata, setFormData] = React.useState(
     JSON.parse(localStorage.getItem(token))
   );
@@ -50,11 +51,11 @@ export default function Dash() {
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <Button
           onClick={() => {
-            localStorage.removeItem("token");
-            nav("/signin");
+            localStorage.removeItem("update");
+            nav("/alluser");
           }}
         >
-          Sign Out
+          Back
         </Button>
 
         <Button

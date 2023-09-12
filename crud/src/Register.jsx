@@ -19,36 +19,69 @@ const { Option } = Select;
 export default function Register() {
   const nav = useNavigate();
   const [formdata, setFormData] = React.useState({});
+  const [submitable,setsubmitable] = React.useState(true);
   const handleSubmit = () => {
     // event.preventDefault();
-if (localStorage.getItem(formdata.email)){
-  alert("email already exists")
-}
-else{
-   let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    if (reg.test(formdata.email) == false) 
-            {
-                alert('Invalid Email Address');}
-else{
+     let regname = /^[a-zA-Z\-]+$/;
+     let regemail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+     let regpassword =
+       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+   if (regname.test(formdata.name) == false) {
+     alert("please enter valid name");
+   } 
+   
+   
+     else if (localStorage.getItem(formdata.email)) {
+       alert("email already exists");
+     } 
+   
+       
+      else if (regemail.test(formdata.email) == false) {
+        alert("Invalid Email Address");
+      }
+       else if (regpassword.test(formdata.password) == false) {
+        alert(`Password contains at least 8 characters and at most 20 characters.
+It contains at least one digit.
+It contains at least one upper case alphabet.
+It contains at least one lower case alphabet.
+It contains at least one special character which includes !@#$%&*()-+=^.
+It doesn’t contain any white space.`);
+      } else {
+        localStorage.setItem(formdata.email, JSON.stringify(formdata));
+        let all = JSON.parse(localStorage.getItem("alluser")) || [];
+        localStorage.setItem(
+          "alluser",
+          JSON.stringify([...all, formdata.email])
+        );
+        console.log(formdata);
 
-  localStorage.setItem(formdata.email, JSON.stringify(formdata));
-  let all=localStorage.getItem("alluser")||[]
-  localStorage.setItem("alluser", JSON.stringify([...all,formdata.email]))
-    console.log(formdata);
+        setFormData({});
+        nav("/signin");
+      }
+     }
+   
 
-    
-    setFormData({});
-     nav("/signin");
-}
-   } };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formdata, [name]: value });
+    if (
+        formdata.name != undefined &&
+        formdata.email != undefined &&
+        formdata.password != undefined &&
+        formdata.name != "" &&
+        formdata.email != "" &&
+        formdata.password != ""
+      ) {
+        setsubmitable(false);
+      } else {
+        setsubmitable(true);
+      }
   };
 
   return (
     <>
-      <Title>
+      <Title level={2}>
         SIGN UP <LockTwoTone />
       </Title>
       <Form
@@ -66,7 +99,7 @@ else{
           remember: true,
         }}
         onFinish={handleSubmit}
-        autoComplete="off"
+        
       >
         <Form.Item
           label="Name"
@@ -80,7 +113,7 @@ else{
           <Input name="name" value={formdata.name} onChange={handleChange} />
         </Form.Item>
 
-        <Form.Item
+        <Form.Item 
           label="Email Address"
           rules={[
             {
@@ -121,7 +154,7 @@ else{
             span: 16,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={submitable}>
             Submit
           </Button>
         </Form.Item>

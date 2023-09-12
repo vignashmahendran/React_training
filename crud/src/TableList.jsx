@@ -1,9 +1,21 @@
-import { Table } from "antd";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AllTable from "./allTable";
+import Useredit from "./useredit";
 
-let users = JSON.parse(localStorage.getItem("alluser")||'[]');
 
-let usersdata = users.map((user) => JSON.parse(localStorage.getItem(user)));
-let fields = ['name','email','password',];
-const TableList = () => <Table dataSource={usersdata} columns={fields.map( col=>({title:col,dataIndex:col,key:col}))} />;
+
+const TableList = () =>{
+  return (
+    <Routes>
+      <Route index element={<AllTable />} />
+      <Route
+        
+        path="/update"
+        element={<Useredit />}
+      />
+    </Routes>
+  );
+}
+
 
 export default TableList;

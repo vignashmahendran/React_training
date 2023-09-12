@@ -5,10 +5,22 @@ import { Button, Checkbox, Form, Input,Typography } from "antd";
 const { Title } = Typography;
 export default function Login() {
   const [formdata, setFormData] = React.useState({});
-
+const [submitable, setsubmitable] = React.useState(true);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formdata, [name]: value });
+    if (
+      formdata.email != undefined &&
+      formdata.password != undefined &&
+      formdata.email != "" &&
+      formdata.password != "" &&
+      formdata.email != " " &&
+      formdata.password != " "
+    ) {
+      setsubmitable(false);
+    } else {
+      setsubmitable(true);
+    }
   };
 
   const nav = useNavigate();
@@ -33,13 +45,7 @@ export default function Login() {
   };
 
   return (
-    <>
-      <Title>
-        SIGN IN 
-      
-      <LockTwoTone />
-      </Title>
-
+  
       <Form
         name="basic"
         labelCol={{
@@ -49,11 +55,20 @@ export default function Login() {
           span: 16,
         }}
         style={{
+          borderRadius: 10,
+          // backgroundColor: "light",
+          border: "solid 3px black",
+          padding: 10,
           maxWidth: 600,
         }}
-        
         onFinish={handleSubmit}
+        
       >
+        <Title level={2}>
+          SIGN IN
+          <LockTwoTone />
+        </Title>
+
         <Form.Item
           label="Email Address :  "
           rules={[
@@ -87,7 +102,7 @@ export default function Login() {
             span: 16,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={submitable}>
             Submit
           </Button>
         </Form.Item>
@@ -96,6 +111,6 @@ export default function Login() {
           Sign Up
         </Button>
       </Form>
-    </>
+  
   );
 }
