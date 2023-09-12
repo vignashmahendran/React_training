@@ -1,0 +1,14 @@
+nav{
+   
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    background-color: gray;
+    color:white;
+
+    position: sticky;
+    z-index:3;
+    top:0;
+}
+

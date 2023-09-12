@@ -1,0 +1,33 @@
+.movielist{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: 76vh;
+}
+
+.card:hover{
+    
+}
+
+.card{
+width: 285px;
+padding: 15px;
+margin:15px;
+background-color: white;
+text-align: center;
+border: 2px solid #838282;
+box-shadow: 0px 2px 3px grey; 
+border-radius: 10px;
+height: 512px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.card img{
+    margin-top: 15px;
+    width: 256px;
+    height: 350px;
+    border-radius: 10px;
+}
