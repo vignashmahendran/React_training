@@ -1,4 +1,3 @@
-
 import {
   Radio,
   AutoComplete,
@@ -61,9 +60,13 @@ export default function Useredit() {
         <Button
           danger
           onClick={() => {
-            localStorage.removeItem(JSON.parse(localStorage.getItem("token")));
-            localStorage.removeItem("token");
-            nav("/signin");
+            let update = JSON.parse(localStorage.getItem("update"));
+            let users = JSON.parse(localStorage.getItem("alluser") || "[]");
+            users = users.filter((user) => user != update);
+            localStorage.removeItem(update);
+            localStorage.removeItem("update");
+            localStorage.setItem("alluser", JSON.stringify(users));
+            nav("/alluser");
           }}
         >
           Delete

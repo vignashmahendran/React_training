@@ -5,6 +5,7 @@ import Register from "./Register";
 import PrivateRoute from "./PrivateRoute";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import CardDetail from "./CardDetail";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/alluser/*" element={<TableList />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
+          <Route path="/card" element={<CardDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

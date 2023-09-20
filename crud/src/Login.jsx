@@ -1,14 +1,15 @@
 import * as React from "react";
 import {LockTwoTone}from "@ant-design/icons"
 import { useNavigate } from "react-router-dom";
-import { Button, Checkbox, Form, Input,Typography } from "antd";
+import { Button,message, Checkbox, Form, Input,Typography } from "antd";
 const { Title } = Typography;
 export default function Login() {
+
   const [formdata, setFormData] = React.useState({});
 const [submitable, setsubmitable] = React.useState(true);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formdata, [name]: value });
+    
     if (
       formdata.email != undefined &&
       formdata.password != undefined &&
@@ -21,26 +22,31 @@ const [submitable, setsubmitable] = React.useState(true);
     } else {
       setsubmitable(true);
     }
+    setFormData({ ...formdata, [name]: value });
   };
 
   const nav = useNavigate();
   const handleSubmit = () => {
+   
+    
     // event.preventDefault();
     console.log(formdata)
     let ls =
-      localStorage.getItem(formdata.email) || '{"email":"user Not found"}'; ;
+      localStorage.getItem(formdata.email) || '{"email":"user Not found"}'; 
     let user = JSON.parse(ls);
 
     if (user.email == "user Not found") {
-      alert("user Not found");
+      message.warning("user Not found");
     } else {
       if (user.password == formdata.password) {
         localStorage.setItem("token", JSON.stringify(user.email));
+         message.success(`Welcome ${user.name}`);
         nav("/");
       } else {
-        alert("password incorrect");
+        message.warning("password incorrect");
       }
     }
+   
     setFormData({})
   };
 
