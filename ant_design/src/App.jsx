@@ -12,6 +12,7 @@ import {
 import FormDetail from "./FormDetail";
 import ListDetail from "./ListDetail";
 import ImgScroll from "./ImgScroll";
+import Paginate from "./Paginate";
 
 const { Sider, Header, Content, Footer } = Layout;
 
@@ -55,52 +56,52 @@ const App = () => {
       children: <ImgScroll listValue={listValue} />,
     },
   ];
-  return (
-    <Layout>
-      <Header
-        style={{
-          padding: 0,
-          display: "flex",
-          justifyContent: "space-between",
-          background: "#ffffff",
-        }}
-      >
+  return (<Paginate/>
+    // <Layout>
+    //   <Header
+    //     style={{
+    //       padding: 0,
+    //       display: "flex",
+    //       justifyContent: "space-between",
+    //       background: "#ffffff",
+    //     }}
+    //   >
         
-        <Menu
-          mode="horizontal"
-          items={items}
-          defaultSelectedKeys={["sub1"]}
-          // style={{ borderRadius: 10 }}
-        />
-      </Header>
-      <Layout style={{ margin: "10px" }}>
-        <Content
-          style={{
-            margin: "4px 14px",
-            padding: 24,
-            borderRadius: 10,
-            background: "#ffffff ",
-            marginBottom:"10px",
-            minHeight:"80vh"
-          }}
-        >
-          <Tabs defaultActiveKey="1" items={tabs} />
-        </Content>
-      </Layout>
-      <Footer
-        style={{
-          padding: 7,
-          textAlign: "center",
-          background: "#444444",
-          color: "#ffffff",
-          width: "100%",
-          position: "fixed",
-          bottom: 0,
-        }}
-      >
-        Copyright
-      </Footer>
-    </Layout>
+    //     <Menu
+    //       mode="horizontal"
+    //       items={items}
+    //       defaultSelectedKeys={["sub1"]}
+    //       // style={{ borderRadius: 10 }}
+    //     />
+    //   </Header>
+    //   <Layout style={{ margin: "10px" }}>
+    //     <Content
+    //       style={{
+    //         margin: "4px 14px",
+    //         padding: 24,
+    //         borderRadius: 10,
+    //         background: "#ffffff ",
+    //         marginBottom:"10px",
+    //         minHeight:"80vh"
+    //       }}
+    //     >
+    //       <Tabs defaultActiveKey="1" items={tabs} />
+    //     </Content>
+    //   </Layout>
+    //   <Footer
+    //     style={{
+    //       padding: 7,
+    //       textAlign: "center",
+    //       background: "#444444",
+    //       color: "#ffffff",
+    //       width: "100%",
+    //       position: "fixed",
+    //       bottom: 0,
+    //     }}
+    //   >
+    //     Copyright
+    //   </Footer>
+    // </Layout>
   );
 };
 
