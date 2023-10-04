@@ -11,10 +11,11 @@ export default axios.create({
 });
 
 privateAxios.interceptors.request.use(
-  (config) => {
-   if (config.headers.Authorization){
-     config.headers.Authorization = `Bearer ${refresh()}`;
-   }
+  async (config) => {
+    if (!config.headers.Authorization) {
+      config.headers.Authorization = `Bearer ${await refresh()}`;
+      
+    }
     return config;
   },
   (error) => {

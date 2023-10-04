@@ -10,15 +10,16 @@ export default async function refresh() {
       Authorization: "Bearer " + refreshToken,
     },
   };
-
+  let data;
   await axios
     .request(config)
     .then((res) => {
-      console.log(res.data["new access"]);
+      
 
-      return res.data["new access"];
+      data= res.data["new access"];
     })
     .catch((err) => {
       console.log(err);
     });
+    return data;
 }

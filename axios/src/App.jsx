@@ -21,9 +21,9 @@ function App() {
         <Route path="register" element={<Register />} />
 
         <Route element={<PrivateRoute />}>
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard/*" element={<Dashboard />} />
         </Route>
-        <Route path="*" element={<img src="404.svg" />} />
+        <Route path="*" element={<img src="/404.svg" />} />
       </Route>
     </Routes>
   );
